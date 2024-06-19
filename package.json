@@ -1,0 +1,6 @@
+{
+  "main": "cypress.config.js",
+  "dependencies": {
+    "cypress": "^13.12.0"
+  }
+}
