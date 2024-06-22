@@ -9,30 +9,28 @@ describe("Validate Login page error messages", { testIsolation: true }, () => {
         cy.visit('/')
     })
 
-    it("should Username and Password error messages be present", () => {
+    it("Should Username and Password error messages be present", () => {
         loginPage.clickLoginButton()
         loginPage.noUsernameErrorMessageIsPresent()
         loginPage.noPasswordErrorMessageIsPresent()
     })
 
-    it("should only Password error messages be present", () => {
+    it("Should only Password error messages be present", () => {
         loginPage.typeUsername(wrongUsername)
         loginPage.clickLoginButton()
         loginPage.noUsernameErrorMessageIsNotPresent()
         loginPage.noPasswordErrorMessageIsPresent()
     })
     
-    it("should only Username error messages be present", () => {
+    it("Should only Username error messages be present", () => {
         loginPage.typePassword(wrongPassword)
         loginPage.clickLoginButton()
         loginPage.noPasswordErrorMessageIsNotPresent()
         loginPage.noUsernameErrorMessageIsPresent()
     })
     
-    it("should unsuccessful login error messages be present", () => {
-        loginPage.typeUsername(wrongUsername)
-        loginPage.typePassword(wrongPassword)
-        loginPage.clickLoginButton()
+    it("Should unsuccessful login error messages be present", () => {
+        cy.loginForm(wrongUsername, wrongPassword)
         loginPage.noAccountErrorMessageIsPresent()
     })
 })

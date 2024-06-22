@@ -24,5 +24,10 @@ declare namespace Cypress {
      * @param {String} selector Name of the selector
      * @param {String} text Text of the element
      * */ elementExistsBySelectorAndText(selector: string, text: string): Chainable<any>;
+    /**
+     * * *Custom command that types a string into a input field
+      @param {String} username Username of the user
+      @param {String} password Password of the user
+    */ loginForm(username: string, password: string): Chainable<any>;
     }
 }

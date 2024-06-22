@@ -25,6 +25,21 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 /// <reference types="cypress" />
 
+const { LoginPage } = require("../pages/loginPage")
+
+const loginPage = new LoginPage()
+
+/**
+ *Custom command that types a string into a input field
+ @param {String} username Username of the user
+ @param {String} password Password of the user
+ */
+ Cypress.Commands.add('loginForm', (username, password) => {
+    loginPage.typeUsername(username)
+    loginPage.typePassword(password)
+    loginPage.clickLoginButton()
+})
+
 /**
  *Custom command that types a string into a input field
  @param {String} selector Name of the selector
