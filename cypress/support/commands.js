@@ -23,7 +23,57 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+/// <reference types="cypress" />
 
-Cypress.Commands.add('typeInField', (selector, text) => { 
-    cy.get(selector).type(text)
- })
+/**
+ *Custom command that types a string into a input field
+ @param {String} selector Name of the selector
+ @param {String} text Text to type into the filed
+ */
+Cypress.Commands.add('typeInField', (selector, text) => {
+    cy.get(selector).should('be.visible').type(text)
+})
+
+/**
+ *Custom command validates presents of the element
+ @param {String} selector Name of the element's selector
+ */
+Cypress.Commands.add('isElementPresent', (selector) => {
+    cy.get(selector).should('be.visible')
+})
+
+/**
+ *Custom command that types a string into a input field
+ @param {String} selector Name of the selector
+ @param {String} text Text of the element
+ */
+Cypress.Commands.add('elementHasText', (selector, text) => {
+    cy.get(selector)
+        .should('be.visible')
+        .invoke('text')
+        .then(elementText => expect(elementText).to.equal(text))
+})
+
+/**
+ *Custom command that validates presents of the element by selector and text
+ @param {String} selector Name of the selector
+ @param {String} text Text of the element
+ */
+Cypress.Commands.add('elementExistsBySelectorAndText', (selector, text) => {
+    cy.get(selector).contains(text).should('be.visible')
+})
+
+/**
+ *Custom command that types a string into a input field
+ @param {String} selector Name of the selector
+ @param {String} placeholder Placeholder for the element
+ */
+Cypress.Commands.add('isPlaceholderCorrect', (selector, placeholder) => {
+    cy.get(selector)
+        .invoke('attr', 'placeholder')
+        .then(text => expect(text).equal(placeholder))
+})
+
+
+
+
